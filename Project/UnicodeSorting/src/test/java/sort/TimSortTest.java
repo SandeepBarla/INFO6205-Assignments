@@ -24,9 +24,6 @@ public class TimSortTest {
         new TimSort<String>().sort(input,0,input.length);
         assertArrayEquals(expected, input);
     }
-
-
-
     @Test
     public void sortHindi1() throws IOException {
         String[] expected = new String[]{"अन्न","ईश्वर","के","के","को","जाता","धर्म","ब्रह्म","भगवान्","भोजन","माना","मुताबिक","में","रूप","शास्त्रों","सनातन","समान","है"};

@@ -45,12 +45,15 @@ public class Unicode {
 
     public static void main(String[] args) throws IOException {
         Unicode obj = new Unicode();
-        List<String> words = FileUtil.hindiWordsList("hindiWordsEx.csv");
+        List<String> words = FileUtil.hindiWordsList("hindiWords.csv");
+
         Supplier<List<String>> supplyObj = () -> {
             Collections.shuffle(words);
             return words;
         };
         String[] wordsArray = words.toArray(new String[0]);
+
+        System.out.println("Test result for 2M words --> ");
 
         Benchmark_Timer<List<String>> msdTimerObj = new Benchmark_Timer<>("Benchmark Test", null, (x) -> obj.MSDSort(words), null);
         double totalMSDTime = msdTimerObj.runFromSupplier(supplyObj, 10);
@@ -71,12 +74,11 @@ public class Unicode {
     private static void calculateBenchMark(Supplier<List<String>> supplyObject, String[] stringArray, Consumer listConsumer, String description) {
         Benchmark_Timer<List<String>> benchmarkTimer = new Benchmark_Timer<>("Benchmark Test", null, listConsumer, null);
         double sortTime = benchmarkTimer.runFromSupplier(supplyObject, 100);
-//        show(stringArray, description);
 
         System.out.println("Array output with " + description);
         for (int i = 0; i < stringArray.length; i++) {
             System.out.println(stringArray[i]);
         }
-        System.out.println(description + "Time Taken: " + sortTime + "ms");
+        System.out.println(description + sortTime + "ms");
     }
 }
